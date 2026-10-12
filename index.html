@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Custom Tournament</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b0b0e;
+            color: #ffffff;
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: #16161f;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ff3b3b;
+            box-shadow: 0 4px 20px rgba(255, 59, 59, 0.2);
+        }
+        h1 {
+            color: #ff3b3b;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #a0a0b2;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        .plan-card {
+            background: #1f1f2b;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-left: 4px solid #ff3b3b;
+        }
+        .plan-info {
+            text-align: left;
+        }
+        .plan-info h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+        }
+        .plan-info p {
+            margin: 2px 0 0;
+            font-size: 12px;
+            color: #00e676;
+            font-weight: bold;
+        }
+        .plan-time {
+            font-size: 11px;
+            color: #ffb74d;
+        }
+        .join-btn {
+            background: #ff3b3b;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .scanner-section {
+            background: #121218;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .scanner-section img {
+            width: 160px;
+            height: auto;
+            background: #fff;
+            padding: 4px;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+        label {
+            font-size: 12px;
+            color: #b0bec5;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #0b0b0e;
+            color: #fff;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+        .submit-btn {
+            background: #00e676;
+            color: #000;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>FREE FIRE TOURNAMENT</h1>
+        <p class="subtitle">Match Khelo, Paise Jeeto</p>
+
+        <div style="text-align: left; font-size: 13px; color: #ff3b3b; font-weight: bold; margin-bottom: 8px;">Select Slot:</div>
+        
+        <div class="plan-card">
+            <div class="plan-info">
+                <h3>Plan 1: Entry ₹10</h3>
+                <p>Win: ₹300</p>
+                <div class="plan-time">⏰ 05:00 PM</div>
+            </div>
+            <button class="join-btn" onclick="selectPlan('Plan 1 (Entry ₹10 - 05:00 PM)')">SELECT</button>
+        </div>
+        <div class="plan-card">
+            <div class="plan-info">
+                <h3>Plan 2: Entry ₹20</h3>
+                <p>Win: ₹600</p>
+                <div class="plan-time">⏰ 06:00 PM</div>
+            </div>
+            <button class="join-btn" onclick="selectPlan('Plan 2 (Entry ₹20 - 06:00 PM)')">SELECT</button>
+        </div>
+        <div class="plan-card">
+            <div class="plan-info">
+                <h3>Plan 3: Entry ₹30</h3>
+                <p>Win: ₹1000</p>
+                <div class="plan-time">⏰ 07:00 PM</div>
+            </div>
+            <button class="join-btn" onclick="selectPlan('Plan 3 (Entry ₹30 - 07:00 PM)')">SELECT</button>
+        </div>
+        <div class="plan-card">
+            <div class="plan-info">
+                <h3>Plan 4: Entry ₹40</h3>
+                <p>Win: ₹1500</p>
+                <div class="plan-time">⏰ 08:00 PM</div>
+            </div>
+            <button class="join-btn" onclick="selectPlan('Plan 4 (Entry ₹40 - 08:00 PM)')">SELECT</button>
+        </div>
+        <div class="plan-card">
+            <div class="plan-info">
+                <h3>Plan 5: Entry ₹50</h3>
+                <p>Win: ₹1800</p>
+                <div class="plan-time">⏰ 09:00 PM</div>
+            </div>
+            <button class="join-btn" onclick="selectPlan('Plan 5 (Entry ₹50 - 09:00 PM)')">SELECT</button>
+        </div>
+
+        <div class="scanner-section">
+            <div style="font-size: 12px; color: #a0a0b2;">QR Code par payment karo</div>
+            <img src="scanner.jpg" alt="QR">
+            <div style="font-size: 12px; color: #ff3b3b; margin-top: 6px;">UPI ID: <b>7589366285@fam</b></div>
+        </div>
+
+        <form id="tourneyForm">
+            <div>
+                <label>Selected Slot:</label>
+                <input type="text" id="selectedPlan" name="Selected_Plan" value="Plan 1 (Entry ₹10 - 05:00 PM)" readonly>
+            </div>
+            <div>
+                <label>Your Name:</label>
+                <input type="text" name="Player_Name" placeholder="Apna naam likho" required>
+            </div>
+            <div>
+                <label>Free Fire Username:</label>
+                <input type="text" name="FF_Username" placeholder="In-game name" required>
+            </div>
+            <div>
+                <label>Free Fire UID:</label>
+                <input type="text" name="FF_UID" placeholder="123456789" required>
+            </div>
+            <div>
+                <label>Transaction ID / UTR:</label>
+                <input type="text" name="UTR_Number" placeholder="UTR Number likho" required>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Details</button>
+        </form>
+    </div>
+
+    <script>
+        function selectPlan(planName) {
+            document.getElementById('selectedPlan').value = planName;
+            window.scrollTo({ top: document.getElementById('tourneyForm').offsetTop - 20, behavior: 'smooth' });
+        }
+
+        document.getElementById('tourneyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Submitting...";
+            btn.disabled = true;
+
+            const formData = new FormData(this);
+
+            fetch("https://formsubmit.co/ajax/Gurpreet01011singh@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert("Details successfully submit ho gayi hain!");
+                document.getElementById('tourneyForm').reset();
+                document.getElementById('selectedPlan').value = "Plan 1 (Entry ₹10 - 05:00 PM)";
+                btn.innerText = "Submit Details";
+                btn.disabled = false;
+            })
+            .catch(err => {
+                alert("Kuch error aa gaya, dobara try karo!");
+                btn.innerText = "Submit Details";
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Custom Tournament</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050508;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px 10px;
+            /* Aesthetic professional dark-red gaming background gradient */
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(220, 20, 60, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 20% 90%, rgba(10, 10, 20, 0.9) 0%, #050508 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 460px;
+            margin: 0 auto;
+            background: rgba(18, 18, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 25px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 59, 59, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 59, 59, 0.05);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: #ff3b3b;
+            font-size: 24px;
+            margin: 0 0 5px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(255, 59, 59, 0.5);
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: #ff5252;
+            margin-bottom: 12px;
+            text-align: left;
+            border-left: 3px solid #ff3b3b;
+            padding-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .plans-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, rgba(28, 28, 40, 0.9) 0%, rgba(18, 18, 26, 0.9) 100%);
+            padding: 12px 15px;
+            border-radius: 1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF Custom Tournament</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050508;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px 10px;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(220, 20, 60, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 20% 90%, rgba(10, 10, 20, 0.9) 0%, #050508 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 460px;
+            margin: 0 auto;
+            background: rgba(18, 18, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 25px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 59, 59, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 59, 59, 0.05);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: #ff3b3b;
+            font-size: 24px;
+            margin: 0 0 5px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(255, 59, 59, 0.5);
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: #ff5252;
+            margin-bottom: 12px;
+            text-align: left;
+            border-left: 3px solid #ff3b3b;
+            padding-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .plans-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, rgba(28, 28, 40, 0.9) 0%, rgba(18, 18, 26, 0.9) 100%);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .plan-info h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .plan-info p {
+            margin: 2px 0 0;
+            font-size: 12px;
+            color: #00e676;
+            font-weight: 600;
+        }
+
+        .plan-time {
+            font-size: 11px;
+            color: #ffb74d;
+            margin-top: 2px;
+        }
+
+        .slot-count {
+            font-size: 10px;
+            color: #ff3b3b;
+            margin-top: 2px;
+            font-
